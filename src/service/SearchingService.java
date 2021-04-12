@@ -15,7 +15,7 @@ import java.util.List;
 public class SearchingService {
 
     //KEY
-    static final String KEY = "";// add your keys
+    static final String KEY = "";// add your key
     //PLACE AUTO COMPLETE URL
     static final String BASE_URL_AUTO_COMPLETE = "https://maps.googleapis.com/maps/api/place/autocomplete/json?";
     //PLACE DETAILS URL

@@ -7,7 +7,7 @@ I have used two webservices:
 2. Place Details Requests
 
 # Place Autocomplete
-This service give use suggestion data but have not Detail information of Place which is needed. so,  "place_id" data is used in Place Details webservice for fetching details information of Place.
+This service gives us suggestion data but have not Detail information of Place which is needed. so,  "place_id" data is used in Place Details webservice for fetching details information of Place.
 
 # Place Details Requests
 "place_id" is used for finding Place details information that gives us required information.

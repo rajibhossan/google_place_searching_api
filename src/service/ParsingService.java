@@ -1,6 +1,6 @@
 package service;
 
-import domain.Place;
+import model.Place;
 import java.util.ArrayList;
 import java.util.List;
 import org.json.simple.JSONArray;
@@ -20,20 +20,20 @@ public class ParsingService {
         Object obj = JSONValue.parse(jsonString);
         JSONObject jsonObject = (JSONObject) obj;
 
-        JSONArray jsonObject1 = (JSONArray) jsonObject.get("predictions");
-
         String status = (String) jsonObject.get("status");
-        
-        if(!status.equals("OK")){
+        if (!status.equals("OK")) {
             return null;
         }
-        
+
+        JSONArray jsonObject1 = (JSONArray) jsonObject.get("predictions");
+
         jsonObject1.forEach(item -> {
             JSONObject placeObject = (JSONObject) item;
             String placeId = (String) placeObject.get("place_id");
             placeIdList.add(placeId);
-            System.out.println(placeId);
+            //System.out.println(placeId);
         });
+
         return placeIdList;
 
     }
@@ -42,6 +42,13 @@ public class ParsingService {
 
         Object obj = JSONValue.parse(jsonPlaceObject);
         JSONObject jsonObject = (JSONObject) obj;
+
+        String status = (String) jsonObject.get("status");
+
+        if (!status.equals("OK")) {
+            return null;
+        }
+
         JSONObject ar1 = (JSONObject) jsonObject.get("result");
 
         Place place = new Place();

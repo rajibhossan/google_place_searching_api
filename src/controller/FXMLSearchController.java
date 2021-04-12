@@ -1,6 +1,6 @@
 package controller;
 
-import domain.Place;
+import model.Place;
 import java.io.File;
 import java.net.URL;
 import java.util.List;
@@ -69,16 +69,37 @@ public class FXMLSearchController implements Initializable {
 
     @FXML
     private void searchbtnAction(ActionEvent event) {
-        search();
+        
+         placeTable.setItems(null);
+        
+        String query = searchTxt.getText();
+
+        if ("".equals(query) || null==query) {
+            a = new Alert(AlertType.ERROR);
+            a.setHeaderText("Search");
+            a.setContentText("Search bar cann't be empty!");
+            a.show();
+            return;
+        }
+       
+        search(query);
+        searchTxt.setText(null);
     }
 
     @FXML
     private void keyReleaseSearchAction(KeyEvent event) {
-        search();
+
+        String query = searchTxt.getText();
+        if (0 < query.length() == true) {
+            search(query);
+        } else {
+            placeTable.setItems(null);
+        }
     }
 
     @FXML
     private void exportbtnAction(ActionEvent event) {
+
         stage = (Stage) anchor.getScene().getWindow();
 
         if (list != null) {
@@ -87,6 +108,7 @@ public class FXMLSearchController implements Initializable {
             fileChooser.setTitle("Save");
             fileChooser.getExtensionFilters().addAll(new ExtensionFilter("CSV", "*.csv"));
             File file = fileChooser.showSaveDialog(stage);
+
             if (file != null) {
                 ExportCSVService.saveCSVFile(list, file);
                 a = new Alert(Alert.AlertType.CONFIRMATION);
@@ -103,24 +125,11 @@ public class FXMLSearchController implements Initializable {
         }
     }
 
-    private void search() {
+    private void search(String query) {
 
-        String query = searchTxt.getText();
         query = query.replaceAll(" ", "%20");
-        if ("".equals(query)) {
-            a = new Alert(AlertType.ERROR);
-            a.setHeaderText("Search");
-            a.setContentText("Search bar cann't be empty!");
-            a.show();
-            return;
-        }
-
         ss = new SearchingService();
         list = ss.getplaces(query);
-        for (Place p : list) {
-            System.out.println(p);
-        }
-
         placeTable.setItems(FXCollections.observableArrayList(list));
     }
 

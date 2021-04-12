@@ -8,11 +8,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="anchor" prefHeight="468.0" prefWidth="689.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLSearchController">
+<AnchorPane id="AnchorPane" fx:id="anchor" prefHeight="490.0" prefWidth="873.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLSearchController">
     <children>
       <AnchorPane layoutX="64.0" layoutY="14.0" prefHeight="454.0" prefWidth="689.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <TextField fx:id="searchTxt" layoutX="98.0" layoutY="32.0" onKeyReleased="#keyReleaseSearchAction" prefHeight="42.0" prefWidth="386.0" promptText="search..." AnchorPane.leftAnchor="98.0" AnchorPane.rightAnchor="98.0" AnchorPane.topAnchor="32.0">
+            <TextField fx:id="searchTxt" layoutX="98.0" layoutY="32.0" onKeyReleased="#keyReleaseSearchAction" prefHeight="42.0" prefWidth="386.0" promptText="search place..." AnchorPane.leftAnchor="98.0" AnchorPane.rightAnchor="98.0" AnchorPane.topAnchor="32.0">
                <font>
                   <Font size="18.0" />
                </font></TextField>
@@ -28,6 +28,9 @@
                   <TableColumn fx:id="state" prefWidth="105.0" text="State" />
                   <TableColumn fx:id="zipcode" prefWidth="72.0" text="Zip Code" />
               </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
             </TableView>
          </children>
       </AnchorPane>
